@@ -42,7 +42,7 @@ const App = (props) => {
   };
 
   //didMount
-  React.useEffect(() => {
+  useEffect(() => {
     getFilms();
   }, []);
 
