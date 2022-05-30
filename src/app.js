@@ -25,17 +25,17 @@ const Film = ({ data }) => {
 };
 
 const App = (props) => {
-  const state = useState({
+  const [state, setState] = useState({
     isLoading: false,
     hasError: false,
     data: []
   });
 
-  const getFilms = () => {
+  const  getFilms = async () => {
     setState({ ...state, hasError: false, isLoading: true });
     fetch("https://api.nomoreparties.co/beatfilm-movies")
       .then((res) => res.json())
-      .then((data) => this.setState({ ...this.state, data, isLoading: false }))
+      .then((data) => setState({ ...state, data, isLoading: false }))
       .catch((e) => {
         setState({ ...state, hasError: true, isLoading: false });
       });
@@ -43,7 +43,7 @@ const App = (props) => {
 
   //didMount
   useEffect(() => {
-    getFilms();
+    await getFilms();
   }, []);
 
   const { data, isLoading, hasError } = state;
