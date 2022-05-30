@@ -31,19 +31,20 @@ const App = (props) => {
     data: []
   });
 
-  const  getFilms = async () => {
-    setState({ ...state, hasError: false, isLoading: true });
-    fetch("https://api.nomoreparties.co/beatfilm-movies")
-      .then((res) => res.json())
-      .then((data) => setState({ ...state, data, isLoading: false }))
-      .catch((e) => {
-        setState({ ...state, hasError: true, isLoading: false });
-      });
-  };
-
   //didMount
   useEffect(() => {
-    await getFilms();
+    const  getFilms = async () => {
+      setState({ ...state, hasError: false, isLoading: true });
+      fetch("https://api.nomoreparties.co/beatfilm-movies")
+        .then((res) => res.json())
+        .then((data) => setState({ ...state, data, isLoading: false }))
+        .catch((e) => {
+          setState({ ...state, hasError: true, isLoading: false });
+        });
+    };
+    
+    getFilms();
+
   }, []);
 
   const { data, isLoading, hasError } = state;
