@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 //useState для функционального компонента
 
 import styles from "./styles.module.css";
